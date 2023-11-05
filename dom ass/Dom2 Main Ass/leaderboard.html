@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            display: flex;
+            justify-content: space-evenly;
+            padding-top: 20px;
+            /* border: 1px solid red; */
+            height: 200px;
+            
+        }
+
+        #gparent {
+            width: 50%;
+            height: 850px;
+            margin: auto;
+            border: 1px solid lavender;
+            border-radius: 10px;
+        }
+
+        .parent>div>input {
+            height: 90px;
+            
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .score {
+
+            margin: auto;
+            text-align: center;
+        }
+
+        .score>input {
+            width: 50%;
+            height: 100px;
+        }
+
+        #num {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            width: 38%;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        #num>button {
+            width: 70px;
+            height: 60px;
+        }
+
+        #submit>button {
+            width: 50%;
+            height: 60px;
+            margin: auto;
+            margin-top: 25px;
+            display: block;
+        }
+       .first>input{
+    background-color: red;
+    font-display: 20px;
+       }
+       .second>input{
+        background-color: green;
+       }
+       #min{
+        text-align: center;
+       }
+       #max{
+        text-align: center;
+       }
+       .score>input{
+        background-color: lightgrey;
+       }
+       #result{
+        text-align: center;
+       }
+       .green{
+        background-color: green;
+       }
+       .orange{
+        background-color: orangered;
+       }
+       .purple{
+        background-color: purple;
+        
+       }
+       #btn{
+        background-color: black;
+        color: white;
+        font-size: large;
+       }
+        
+    </style>
+</head>
+
+<body>
+    <div id="gparent">
+        <div class="parent">
+            <div class="first">
+                <input type="number" value="40" id="min">
+                <h1>MIN</h1>
+            </div>
+            <div class="second">
+                <input type="number" value="200" id="max">
+                <h1>MAX</h1>
+            </div>
+        </div>
+        <div class="score">
+            <h1>SCORE</h1>
+            <input type="number" id="result">
+        </div>
+
+        <div id="num">
+            <button class="green">1</button>
+            <button class="orange">2</button>
+            <button class="green">3</button>
+            <button class="orange">4</button>
+            <button class="orange">5</button>
+            <button class="orange">6</button>
+            <button class="green">7</button>
+            <button class="orange">8</button>
+            <button class="green">9</button>
+            <button class="purple">0</button>
+        </div>
+
+        <div id="submit">
+            <button id="btn">ENTER</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    let min = document.getElementById("min");
+    let max = document.getElementById("max");
+    let res = document.getElementById("result");
+    let key = document.querySelectorAll("#num > button");
+
+    for (let i = 0; i < key.length; i++) {
+        key[i].addEventListener("click",function(){
+            res.value += key[i].innerText;
+        })
+    }
+
+    document.getElementById("btn").addEventListener("click",function(){
+        if (Number(res.value) < Number(min.value)){
+            min.value = res.value;
+        }
+        if(Number(res.value) > Number(max.value)){
+            max.value = res.value;
+        }
+        if(Number(res.value) > Number(min.value) && Number(res.value) < Number(max.value)){
+            min.value = " ";
+            max.value = " ";
+        }
+    })
+
+</script>
