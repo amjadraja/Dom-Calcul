@@ -1,0 +1,32 @@
+
+.search{
+    width: 95%;
+    height: 50px;
+    border: 1px solid red;
+    padding: 5px;
+    margin: auto;
+}
+input{
+    width: 24%;
+    justify-content: space-around;
+    height: 40px;
+}
+#Purple{
+    background-color: purple;
+    color:wheat;
+    text-align: center;
+    font-weight: bolder;
+}
+.B{
+background-color: purple;
+color: azure;
+font-weight: bolder;
+}
+.sectionBody{
+    background-image: url("https://media.foundit.in/trex/public/theme_3/dist/images/hero-section-desktop-guest.svg");
+    height: 400px;
+    /* border : 1px solid red; */
+}
+.search > h1{
+    text-align: center;
+}
