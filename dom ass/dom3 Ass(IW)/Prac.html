@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="" alt="">
+    <button id="prev"> > </button>
+    <button id="next">
+        < </button>
+</body>
+<script>
+    let prev = document.getElementById('prev');
+    let next = document.getElementById('next');
+    let imageArr = [
+        "https://images4.alphacoders.com/132/thumbbig-1329876.webp", "https://images3.alphacoders.com/133/thumbbig-1332177.webp", "https://images7.alphacoders.com/441/thumbbig-441841.webp", "https://images7.alphacoders.com/131/thumbbig-1312721.webp"
+    ];
+    let image = document.querySelector('img')
+    let defaultImg = 0;
+    image.setAttribute('src', imageArr[defaultImg]);
+    
+  
+    prev.addEventListener('click',function(){
+        defaultImg--;
+        if(defaultImg<0){
+            defaultImg = imageArr.length-1;
+        }
+        image.setAttribute("src", imageArr[defaultImg]);
+    });
+    next.addEventListener('click',function(){
+        defaultImg++;
+        if(defaultImg>=imageArr.length){
+            defaultImg = 0;
+        }
+        image.setAttribute("src", imageArr[defaultImg]);
+    });
+
+</script>
+
+</html>

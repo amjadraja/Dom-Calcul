@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+   <div id="main" style="width: 200px; border: 1px solid black;">
+
+    </div>
+    
+</body>
+</html>
+<script>
+    // document.createElement('h1').innerText = "I am A heading";
+    let heading = document.createElement('h1')
+    heading.innerText = "I am a heading";
+    let para = document.createElement('p')
+    para.innerText = 'I am a para'
+    let btn = document.createElement('button')
+    btn.innerText = "clicked"
+   
+    document.querySelector('#main').append(heading,para,btn);
+
+</script>
