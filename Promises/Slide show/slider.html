@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .sliderContainer {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sliderContainer">
+        <div class="slides">
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=1" alt="Slide 1"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=2" alt="Slide 2"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=3" alt="Slide 3"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=4" alt="Slide 4"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=5" alt="Slide 5"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=6" alt="Slide 6"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=7" alt="Slide 7"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=8" alt="Slide 8"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=9" alt="Slide 9"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=10" alt="Slide 10"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=1" alt="Slide 11"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=2" alt="Slide 12"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=3" alt="Slide 13"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=4" alt="Slide 14"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=5" alt="Slide 15"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=6" alt="Slide 16"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=7" alt="Slide 17"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=8" alt="Slide 18"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=9" alt="Slide 19"></div>
+            <div class="slide"><img src="https://placehold.co/1200x400.png?text=10" alt="Slide 20"></div>
+        </div>
+    </div>
+
+    <button onclick="startStopSlider()">Start/Stop Slider</button>
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelector('.slides');
+        const slideWidth = slides.clientWidth;
+        let intervalId;
+    
+        function startSlider() {
+            intervalId = setInterval(() => {
+                nextSlide();
+            }, 2000);
+        }
+    
+        function stopSlider() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.children.length) % slides.children.length;
+            updateSlider();
+            stopSlider();
+            startSlider();
+        }
+    
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.children.length;
+            updateSlider();
+            stopSlider();
+            startSlider();
+            console.log("nxt",currentIndex,slides.children.length);
+        }
+    
+        function updateSlider() {
+            slides.style.transition = 'transform 0.5s ease-in-out';
+            slides.style.transform = `translateX(${-(currentIndex * slideWidth)}px)`;
+        }
+    
+        function startStopSlider() {
+            if (intervalId) {
+                stopSlider();
+            } else {
+                startSlider();
+            }
+        }
+    
+        startSlider();
+    </script>
+</body>
+
+</html>
