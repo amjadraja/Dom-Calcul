@@ -9,55 +9,61 @@
 
 <body>
 
-    <div class="stopwatch">0:00:0</div>
+    <div class="stopwatch">0:00:0.000</div>
     <button onclick="start()">Start</button>
     <button onclick="pause()">Pause</button>
     <button onclick="reset()">Reset</button>
 
     <script>
         let timer;
-        let totalMilliSeconds = 0;
+        let totalMilliseconds = 0;
 
         function start() {
-           
+            // Start the timer
             timer = setInterval(stopwatch, 10);
         }
 
         function pause() {
-            
+            // Pause the timer
             clearInterval(timer);
         }
 
         function reset() {
-            
+            // Stop the timer
             clearInterval(timer);
 
-            
-            totalMilliSeconds = 0;
+            // Reset total milliseconds
+            totalMilliseconds = 0;
 
-            
+            // Update the display
             updateDisplay();
         }
 
         function stopwatch() {
-           
-            totalMilliSeconds++;
+            // Increment total milliseconds
+            totalMilliseconds += 10;
 
-           
+            // Update the display
             updateDisplay();
         }
 
         function updateDisplay() {
-            const hours = Math.floor((totalMilliSeconds / 3600000));
-            const minutes = Math.floor((totalMilliSeconds % 3600000) / 60000);
-            const seconds = totalMilliSeconds % 60000;
-            
+            const hours = Math.floor(totalMilliseconds / 3600000);
+            const minutes = Math.floor((totalMilliseconds % 3600000) / 60000);
+            const seconds = Math.floor((totalMilliseconds % 60000) / 1000);
+            const milliseconds = totalMilliseconds % 1000;
 
-            document.querySelector(".stopwatch").textContent = `${hours}:${pad(minutes)}:${pad(seconds)}`;
+            document.querySelector(".stopwatch").textContent = `${hours}:${addZero(minutes)}:${addZero(seconds)}.${addMilliseconds(milliseconds)}`;
         }
 
-        function pad(value) {
+        function addZero(value) {
             return value < 10 ? `0${value}` : value;
+        }
+
+        function addMilliseconds(value) {
+            if (value < 10) return `00${value}`;
+            if (value < 100) return `0${value}`;
+            return value;
         }
     </script>
 
