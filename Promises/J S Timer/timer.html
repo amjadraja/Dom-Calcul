@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+
+<body>
+
+    <input type="number" name="hour" id="hr" placeholder="hour">
+    <input type="number" name="minute" id="min" placeholder="minute">
+    <input type="number" name="seconds" id="sec" placeholder="seconds">
+    <div class="stopwatch">0:00:0</div>
+    <button onclick="start()">Start</button>
+    <button onclick="pause()">Pause</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        let timer;
+        let totalSeconds = 0;
+
+        function start() {
+            
+            const hour = parseInt(document.querySelector('#hr').value) || 0;
+            const minute = parseInt(document.querySelector('#min').value) || 0;
+            const seconds = parseInt(document.querySelector('#sec').value) || 0;
+
+            
+            totalSeconds = hour * 60 * 60 + minute * 60 + seconds;
+
+
+            updateDisplay();
+
+            
+            timer = setInterval(stopwatch, 1000);
+        }
+
+        function pause() {
+            
+            clearInterval(timer);
+        }
+
+        function reset() {
+            
+            clearInterval(timer);
+
+            
+            totalSeconds = 0;
+
+            updateDisplay();
+        }
+
+        function stopwatch() {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+
+                
+                updateDisplay();
+            } else {
+                 
+                clearInterval(timer);
+            }
+        }
+
+        function updateDisplay() {
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds  / 60));
+            const seconds = totalSeconds % 60;
+
+            document.querySelector(".stopwatch").textContent = `${hours}:${addZero(minutes)}:${addZero(seconds)}`;
+        }
+
+        function addZero(value) {
+            return value < 10 ? `0${value}` : value;
+        }
+    </script>
+
+</body>
+
+</html>
