@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Play</button>
+
+    <div id="cont">
+        <button>0</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+    </div>
+    <h1 id="head">9:14</h1>
+
+    <script>
+        let play = document.querySelector('#btn')
+        let heading = document.querySelector('#head')
+        play.addEventListener('click', function () {
+            console.log('I am Played')
+        })
+
+        let AllButton = document.querySelectorAll('#cont > button')
+
+        for (let i = 0; i < AllButton.length; i++) {
+            AllButton[i].addEventListener('click', function () {
+                // console.log(AllButton[i].innerText)
+
+                heading.innerText = AllButton[i].innerText
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

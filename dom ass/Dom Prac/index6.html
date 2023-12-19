@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+
+    
+    
+</body>
+<script>
+//  <!-- create multiple object using function -->
+
+//factory function
+
+// function createAccount(name, mob, location, acc_no, balance, acc_type){
+//    let obj = {
+//    name: name,
+//    mob: mob,
+//    location: location,
+//    acc_no: acc_no,
+//    balance: balance, 
+//    acc_type: acc_type
+// }
+// return obj;
+// }
+
+// let p1 = createAccount("Amjad", "7488380916", "Ranchi", "767564683475", 20000, "Saving")
+
+// console.log(p1)
+
+//call, bind and apply
+
+let p1 = {
+    name: "Amjad",
+    age: 22
+}
+
+let p2 = {
+    name: "Rahul",
+    age: 24
+}
+function print(){
+    console.log(this);
+}
+//but this refer to window object bcz it's inside the function but call will help us for a moment to show that object
+
+print.call(p1)
+print.call(p2)
+print()
+
+// call syntax print.call(reference obj, parameter)
+
+// apply is similar but it can pass only 2 parameter whereas call can pass 'n' no of parameter
+
+// we can store the function somewhere and then use it in future..similar to call
+
+// let value = print.bind(p1, "delhi", 123);
+// and in this suppose we have written 1000 lines of code..
+
+// value()
+</script>
+</html>

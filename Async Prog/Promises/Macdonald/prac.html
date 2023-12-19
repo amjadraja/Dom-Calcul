@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #foodImage {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #orderId {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: none;
+    }
+  </style>
+  <title>Food Order</title>
+</head>
+<body>
+  <button id="orderButton">Order Food</button>
+
+  <div id="foodItems">
+    <input type="checkbox" id="burger" name="foodItem" value="Burger">
+    <label for="burger">Burger</label>
+
+    <input type="checkbox" id="pizza" name="foodItem" value="Pizza">
+    <label for="pizza">Pizza</label>
+
+    <input type="checkbox" id="pasta" name="foodItem" value="Pasta">
+    <label for="pasta">Pasta</label>
+
+    <!-- Add more food items as needed -->
+  </div>
+
+  <img id="foodImage" src="https://media.istockphoto.com/id/1345624336/photo/chicken-biriyani.jpg?s=612x612&w=0&k=20&c=adU_N0P-1SKMQLZu5yu7aPknfLLgbViI8XILqLP92A4=" alt="Food Image">
+  <div id="orderId"></div>
+
+  <script>
+    document.getElementById('orderButton').addEventListener('click', () => {
+      const selectedItems = Array.from(document.querySelectorAll('input[name="foodItem"]:checked')).map(item => item.value);
+
+      if (selectedItems.length === 0) {
+        alert('Please select at least one food item.');
+        return;
+      }
+
+      // Simulate ordering with a promise
+      const orderPromise = new Promise((resolve) => {
+        const randomSeconds = Math.floor(Math.random() * 5) + 1; // Random seconds between 1 and 5
+        setTimeout(() => {
+          resolve();
+        }, randomSeconds * 1000);
+      });
+
+      orderPromise.then(() => {
+        // Display the food image
+        const foodImage = document.getElementById('foodImage');
+        const orderId = document.getElementById('orderId');
+
+        foodImage.src = 'https://media.istockphoto.com/id/1345624336/photo/chicken-biriyani.jpg?s=612x612&w=0&k=20&c=adU_N0P-1SKMQLZu5yu7aPknfLLgbViI8XILqLP92A4=" alt="Food Image'; // Replace with the actual path
+        foodImage.style.display = 'block';
+
+        // Generate and display a random order ID
+        const randomOrderId = Math.floor(Math.random() * 1000000) + 1;
+        orderId.textContent = `Order ID: ${randomOrderId}`;
+        orderId.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>

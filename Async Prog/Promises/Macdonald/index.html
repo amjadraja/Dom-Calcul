@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Macdonald's</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #pizzaImg,
+        #burgerImg,
+        #noodlesImg,
+        #biryaniImg {
+            display: none;
+            margin-top: 30px;
+            width: 30%;
+        }
+
+        #orderId {
+            
+           margin-left: 300px
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="Food List">
+        <input type="checkbox" id="pizza"> Pizza
+        <br>
+
+
+        <input type="checkbox" id="burger">
+        Burger
+        <br>
+
+
+        <input type="checkbox" id="noodles">
+        Noodles
+        <br>
+
+        <input type="checkbox" id="biryani">
+        Biryani
+        <br>
+    </div>
+
+
+    <button id="btn">Order Food</button>
+    <div id="orderId" style="color: red;" >Order Id</div>
+
+    <img id="pizzaImg" src="https://w0.peakpx.com/wallpaper/561/734/HD-wallpaper-delicious-pizza-pizza-delicious.jpg"
+        alt="">
+    <img id="burgerImg"
+        src="https://img.freepik.com/free-photo/front-view-tasty-meat-burger-with-cheese-salad-dark-background_140725-89597.jpg"
+        alt="">
+    <img id="noodlesImg"
+        src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bm9vZGxlc3xlbnwwfHwwfHx8MA%3D%3D"
+        alt="">
+    <img id="biryaniImg"
+        src="https://st.depositphotos.com/3147737/4982/i/450/depositphotos_49826809-stock-photo-hyderabadi-biryani-a-popular-chicken.jpg"
+        alt="">
+
+</body>
+<script>
+    let btn = document.querySelector('#btn')
+    btn.addEventListener('click', function () {
+        let pizza = document.querySelector('#pizza').checked
+        let burger = document.querySelector('#burger').checked
+        let noodles = document.querySelector('#noodles').checked
+        let biryani = document.querySelector('#biryani').checked
+
+        let randomTime = Math.floor(Math.random() * 10000)
+        console.log(randomTime)
+        let randomId = Math.floor(Math.random() * 1000000)// how to display fixed no of digit using math.random..this is my task
+        
+        document.querySelector('#orderId').textContent = randomId ///i also have to check for innerhtml
+        alert(`your order is ${pizza ? 'pizza' : ''} ${burger ? 'burger' : ''} ${noodles ? 'noodles' : ''} ${biryani ? 'biryani' : ''} and it will take ${randomTime / 1000} seconds to prepare`)
+
+        let promise = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                if (pizza) {
+                    document.querySelector('#pizzaImg').style.display = 'block'
+                }
+                if (burger) {
+                    document.querySelector('#burgerImg').style.display = 'block'
+                }
+                if (noodles) {
+                    document.querySelector('#noodlesImg').style.display = 'block'
+                }
+                if (biryani) {
+                    document.querySelector('#biryaniImg').style.display = 'block'
+                }
+                if(!biryani){
+                    // reject("order rejected")
+                }
+
+                // resolve("query is resolved")
+            }, randomTime)
+        })
+console.log(promise)
+
+    })
+
+
+</script>
+
+</html>

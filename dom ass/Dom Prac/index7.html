@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    // setting a prototype in constructor function
+
+    function Person(firstName, lastName, age) {
+
+        this.firstName = firstName,
+            this.lastName = lastName,
+            this.age = age
+    }
+
+    Person.prototype.inceraseAge = function(){
+        console.log(this.age);
+    }
+
+    Person.prototype.sleeps = function(){
+        console.log(`${this.firstName} is sleeping`);
+    }
+
+    Person.prototype.eat = function(){
+        console.log(`${this.firstName} is eating`)
+    }
+    Person.prototype.introduceSelf = function(){
+        console.log(this.firstName, this.lastName, this.age);
+    }
+
+    function Employee(firstName, lastName, age, department, salary){
+        Person.call(this, firstName, lastName, age)
+
+this.department = department
+this.salary = salary
+    }
+
+    Object.setPrototypeOf(Employee.prototype, Person.prototype)
+
+    Employee.prototype.work = function(){
+        console.log(`${this.firstName} is working`)
+    }
+
+    Employee.prototype.getSalary = function(){
+        console.log(`${this.firstName} is getting salary`)
+    }
+
+    let e1 = new Employee("Amjad", "Raja", 25, 'engineering', 30000);
+
+    console.log(e1)
+    e1.sleeps();
+    e1.eat()
+
+</script>
+
+</html>
