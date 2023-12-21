@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePay UI</title>
+</head>
+
+<body>
+    <h1 style="color: blueviolet; text-align: center;">PhonePe Payment</h1>
+    <div style="text-align: center; margin-top: 50px;">
+        <input type="number" id="input">
+    </div>
+
+    <div id="paymentProcessing" style="display: none;">
+        <p>Processing....</p>
+    </div>
+
+    <div id="paymentSuccess" style="display: none;">
+        <p>Payment Successfull</p>
+    </div>
+
+    <div id="paymentFailed" style="display: none;">
+        <p>Payment Failed</p>
+    </div>
+
+    <button id="button">Payment</button>
+
+
+</body>
+<script>
+    document.querySelector('#button').addEventListener('click', function () {
+        let input = parseFloat(document.querySelector('#input').value)
+        console.log(typeof(input))
+        document.querySelector('#paymentProcessing').style.display = 'block'
+        doPayment(input)
+
+            .then(
+                function (data) {
+                    console.log('success',data)
+                document.querySelector('#paymentProcessing').style.display = 'none'
+                document.querySelector('#paymentSuccess').style.display = 'block'
+            }
+            )
+
+            .catch(
+                function (data) {
+                    console.log(data)
+                document.querySelector('#paymentProcessing').style.display = 'none'
+                document.querySelector('#paymentFailed').style.display = 'block'
+            }
+            )
+    })
+
+
+    function doPayment(input) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log('promise',input)
+                if (input > 200) {
+                    resolve('Success')
+                }
+                else {
+                    reject('failed')
+                }
+            }, 2000)
+        })
+    }
+
+</script>
+
+</html>
